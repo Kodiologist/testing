@@ -1,0 +1,19 @@
+name: Tests
+
+on: [push]
+
+jobs:
+
+  example:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with: {python-version: 3}
+    - uses: actions/setup-node@v4
+    - run: npm install pyodide
+    - run: pip install pyodide-build
+    - run: pyodide venv .venv-pyodide
+    - run: source .venv-pyodide/bin/activate
